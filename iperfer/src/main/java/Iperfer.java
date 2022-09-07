@@ -4,14 +4,17 @@ import java.io.IOException;
 public class Iperfer {
     public static void main(String[] args) throws IOException {
 
+        // System.out.println(args[2] + "-----------------");
+        // System.out.println(args.length + "-----------------");
         // process your command line args
         // if you want to use the apache commons library
-        Options options = new Options();
-        options = addCLIArgs(options);
+        // Options options = new Options();
+        Options options = addCLIArgs();
         CommandLineParser parser = new DefaultParser(); 
         CommandLine cmd = null;
         // HelpFormatter formatter = new HelpFormatter();
         try {
+            System.out.println("parsing cmds");
             cmd = parser.parse(options, args);
         } catch (Exception e) {
             System.out.println("Error: parsing inputs");
@@ -21,6 +24,7 @@ public class Iperfer {
 
         checkValidCLIArgs(args);
 
+        // System.out.println(cmd.getOptionValue("port_number") + "********");
         int portNum = Integer.parseInt(cmd.getOptionValue("port_number"));
         if (portNum < 1024 || portNum > 65535) {
             System.out.println("Error: port number must be in the range 1024 to 65535");
@@ -68,7 +72,8 @@ public class Iperfer {
         throwError("Error: invalid arguments");
     }
 
-    public static Options addCLIArgs(Options options) {
+    public static Options addCLIArgs() {
+        Options options = new Options();
         OptionGroup group = new OptionGroup();
         Option clientOpt = new Option("c", "client");
         group.addOption(clientOpt);
@@ -76,9 +81,9 @@ public class Iperfer {
         group.addOption(serverOpt);
         options.addOptionGroup(group);
 
-        options.addOption(new Option("h", "hostname"));
-        options.addOption(new Option("t", "time"));
-        Option port = new Option("p", "port_number");
+        options.addOption(new Option("h", "hostname", true, "my_host"));
+        options.addOption(new Option("t", "time", true, "10"));
+        Option port = new Option("p", "port_number", true, "1024");
         port.setRequired(true);
         options.addOption(port);
         return options;
