@@ -7,11 +7,80 @@ public class Iperfer {
         // process your command line args
         // if you want to use the apache commons library
         Options options = new Options();
+        options = addCLIArgs(options);
+        CommandLineParser parser = new DefaultParser(); 
+        CommandLine cmd = null;
+        // HelpFormatter formatter = new HelpFormatter();
+        try {
+            cmd = parser.parse(options, args);
+        } catch (Exception e) {
+            System.out.println("Error: parsing inputs");
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
-        Client client = new Client();
-        Server server = new Server();
+        checkValidCLIArgs(args);
 
-        client.run();
-        server.run();
+        int portNum = Integer.parseInt(cmd.getOptionValue("port_number"));
+        if (portNum < 1024 || portNum > 65535) {
+            System.out.println("Error: port number must be in the range 1024 to 65535");
+            System.exit(1);
+        }
+
+        String runAs = cmd.getOptionValue("client");
+        if (runAs == null) {
+            // run as server
+            Server server = new Server(portNum);
+            server.run();
+        } else {
+            // run as client
+            String hostname = cmd.getOptionValue("hostname");
+            double timeInSecs = Integer.parseInt(cmd.getOptionValue("time"));
+            Client client = new Client(hostname, portNum);
+            client.run(timeInSecs);
+        }
+
+    }
+
+    public static void throwError(String error) {
+        System.out.println(error);
+        System.exit(1);
+    }
+
+    public static void checkValidCLIArgs(String[] args) {
+        if (args[0].equals("-c") || args[0].equals("-s")) {
+            if (args[0].equals("-c")) {
+                if (args.length == 7) {
+                    if (args[1].equals("-h") && args[3].equals("-p") && args[5].equals("-t")) {
+                        return;
+                    }
+                }
+            } else {
+                if (args.length == 3) {
+                    if (args[1].equals("-p")) {
+                        return;
+                    }
+                }
+            }
+        } 
+
+        // should not reach here
+        throwError("Error: invalid arguments");
+    }
+
+    public static Options addCLIArgs(Options options) {
+        OptionGroup group = new OptionGroup();
+        Option clientOpt = new Option("c", "client");
+        group.addOption(clientOpt);
+        Option serverOpt = new Option("s", "server");
+        group.addOption(serverOpt);
+        options.addOptionGroup(group);
+
+        options.addOption(new Option("h", "hostname"));
+        options.addOption(new Option("t", "time"));
+        Option port = new Option("p", "port_number");
+        port.setRequired(true);
+        options.addOption(port);
+        return options;
     }
 }

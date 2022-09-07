@@ -4,7 +4,7 @@ import java.net.*;
 public class Server {
 
     // pass any variables to the constructor
-    public Server() {
+    public Server(int portNum) {
         // set any local variables
     }
 
