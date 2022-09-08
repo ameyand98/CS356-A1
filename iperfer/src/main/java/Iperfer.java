@@ -17,9 +17,7 @@ public class Iperfer {
             System.out.println("parsing cmds");
             cmd = parser.parse(options, args);
         } catch (Exception e) {
-            System.out.println("Error: parsing inputs");
-            System.out.println(e.getMessage());
-            System.exit(1);
+            throwError("Error: parsing inputs");
         }
 
         checkValidCLIArgs(args);
@@ -27,8 +25,7 @@ public class Iperfer {
         // System.out.println(cmd.getOptionValue("port_number") + "********");
         int portNum = Integer.parseInt(cmd.getOptionValue("port_number"));
         if (portNum < 1024 || portNum > 65535) {
-            System.out.println("Error: port number must be in the range 1024 to 65535");
-            System.exit(1);
+            throwError("Error: port number must be in the range 1024 to 65535");
         }
 
         String runAs = cmd.getOptionValue("client");
