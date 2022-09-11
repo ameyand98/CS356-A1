@@ -28,7 +28,7 @@ public class Client {
     }
 
     // run your code
-    public int run(double timeInSecs)  throws IOException {
+    public long run(double timeInSecs)  throws IOException {
         // Socket clientSocket = new Socket();
         double time = timeInSecs * 1000000000;
         boolean finishSending = false;
@@ -59,6 +59,6 @@ public class Client {
         //Convert to KB -> megabits then megabits / secs -> Mbps
         double trafficRate = (8*(double) numPacketsSent/1000.0) / elapsedTime;
 
-        System.out.println("sent=" + str(numPacketsSent) + " KB rate=" + str(trafficRate) + " Mbps");
+        System.out.println("sent=" + numPacketsSent + " KB rate=" + trafficRate + " Mbps");
     }
 }

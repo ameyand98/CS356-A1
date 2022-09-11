@@ -13,26 +13,27 @@ public class Server {
         try {
             socket = new ServerSocket(portNum);
         } catch (Exception e) {
-            System.out.println("Error creating new server socket on " + str(portNum) + ": " + e);
+            System.out.println("Error creating new server socket on " + portNum + ": " + e);
         }
     }
 
     // run your server code
-    public void run() throws IOException {
+    public long run() throws IOException {
         // ServerSocket serverSocket = new ServerSocket();
 
         boolean connectionAlive = true;
         numPacketsReceived = 0;
         byte[] packet = new byte[1000];
         double elapsedTime = 0;
-        long receiveStart, receiveFinish;
+        long receiveStart = 0;
+        long receiveFinish = 0;
         double numBytesReceived = 0;
 
         try {
             // Block until client requests connection
             Socket client = socket.accept();
 
-            inStream = new DataInputStream(client.getInputStream());
+            DataInputStream inStream = new DataInputStream(client.getInputStream());
             receiveStart = System.nanoTime();
             while (connectionAlive) {
                 numBytesReceived = inStream.read(packet, 0, packet.length);
@@ -40,17 +41,18 @@ public class Server {
                 numPacketsReceived += numBytesReceived/1000;
             }
             receiveFinish = System.nanoTime();
-            
+
             inStream.close();
             client.close();
             socket.close();
         } catch (Exception e) {
-            System.out.println("Failed to read all bytes sent by client connected to port " + str(socket.getPort()) + ": " + e);
+            System.out.println("Failed to read all bytes sent by client connected to port " + socket.getLocalPort() + ": " + e);
         }
 
         elapsedTime = (double)(receiveFinish - receiveStart) / 1000000000;
 
         summarize(elapsedTime);
+
         return numPacketsReceived;
     }
 
@@ -58,6 +60,6 @@ public class Server {
         //Convert to KB -> megabits then megabits / secs -> Mbps
         double trafficRate = (8*(double) numPacketsReceived/1000.0) / elapsedTime;
 
-        System.out.println("received=" + str(numPacketsSent) + " KB rate=" + str(trafficRate) + " Mbps");
+        System.out.println("received=" + numPacketsReceived + " KB rate=" + trafficRate + " Mbps");
     }
 }

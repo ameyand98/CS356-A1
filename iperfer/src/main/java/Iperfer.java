@@ -31,12 +31,14 @@ public class Iperfer {
         String runAs = cmd.getOptionValue("client");
         if (runAs == null) {
             // run as server
+            System.out.println("Running server on port " + portNum);
             Server server = new Server(portNum);
             server.run();
         } else {
             // run as client
             String hostname = cmd.getOptionValue("hostname");
             double timeInSecs = Integer.parseInt(cmd.getOptionValue("time"));
+            System.out.println("Running client on port " + portNum + " and host " + hostname + " for " + timeInSecs + " s");
             Client client = new Client(hostname, portNum);
             client.run(timeInSecs);
         }
