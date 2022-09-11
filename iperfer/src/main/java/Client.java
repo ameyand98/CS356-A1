@@ -35,20 +35,28 @@ public class Client {
         numPacketsSent = 0;
         byte[] packet = new byte[1000];
         double elapsedTime = 0;
-        long sendStart, sendFinish;
+        long sendStart = 0;
+        long sendFinish = 0;
 
-        while (!finishSending) {
-            sendStart = System.nanoTime();
-            outStream.write(packet, 0, packet.length);
-            sendFinish = System.nanoTime();
-            elapsedTime += sendFinish - sendStart;
-            finishSending = (elapsedTime >= time);
-            numPacketsSent++;
+        try {
+            while (!finishSending) {
+                sendStart = System.nanoTime();
+                outStream.write(packet, 0, packet.length);
+                sendFinish = System.nanoTime();
+                elapsedTime += sendFinish - sendStart;
+                finishSending = (elapsedTime >= time);
+                numPacketsSent++;
+            }
+    
+            elapsedTime /= 1000000000;
+            outStream.close();
+            socket.close();
+        } catch (IOException e) {
+            System.out.println("IOException thrown: " + e);
+            System.exit(4);
+        } catch (Exception e) {
+            System.out.println("Failed to send all bytes through client socket connected to port " + socket.getPort() + ": " + e);
         }
-
-        elapsedTime /= 1000000000;
-        outStream.close();
-        socket.close();
 
         summarize(elapsedTime);
 

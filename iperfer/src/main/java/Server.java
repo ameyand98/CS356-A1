@@ -45,8 +45,11 @@ public class Server {
             inStream.close();
             client.close();
             socket.close();
+        } catch (IOException e) {
+            System.out.println("IOException thrown: " + e);
+            System.exit(4);
         } catch (Exception e) {
-            System.out.println("Failed to read all bytes sent by client connected to port " + socket.getLocalPort() + ": " + e);
+            System.out.println("Failed to read all bytes through server connected to port " + socket.getLocalPort() + ": " + e);
         }
 
         elapsedTime = (double)(receiveFinish - receiveStart) / 1000000000;
