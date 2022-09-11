@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.DataInputStream;
 import java.net.*;
+import java.util.*;
 
 public class Server {
 
@@ -27,20 +28,22 @@ public class Server {
         double elapsedTime = 0;
         long receiveStart = 0;
         long receiveFinish = 0;
-        double numBytesReceived = 0;
+        long numBytesReceived = 0;
 
         try {
             // Block until client requests connection
             Socket client = socket.accept();
 
             DataInputStream inStream = new DataInputStream(client.getInputStream());
-            receiveStart = System.nanoTime();
+            
             while (connectionAlive) {
-                numBytesReceived = inStream.read(packet, 0, packet.length);
-                connectionAlive = (numBytesReceived != -1);
-                numPacketsReceived += numBytesReceived/1000;
+                receiveStart = System.nanoTime();
+                int curBytesReceived = inStream.read(packet, 0, packet.length);
+                receiveFinish = System.nanoTime();
+                elapsedTime += (receiveFinish - receiveStart);
+                connectionAlive = (curBytesReceived != -1);
+                numBytesReceived += curBytesReceived == -1 ? 0 : curBytesReceived;
             }
-            receiveFinish = System.nanoTime();
 
             inStream.close();
             client.close();
@@ -52,17 +55,18 @@ public class Server {
             System.out.println("Failed to read all bytes through server connected to port " + socket.getLocalPort() + ": " + e);
         }
 
-        elapsedTime = (double)(receiveFinish - receiveStart) / 1000000000;
+        elapsedTime /= 1000000000;
+        numPacketsReceived = numBytesReceived / 1000;
 
         summarize(elapsedTime);
-
         return numPacketsReceived;
     }
 
     private void summarize(double elapsedTime) {
         //Convert to KB -> megabits then megabits / secs -> Mbps
-        double trafficRate = (8*(double) numPacketsReceived/1000.0) / elapsedTime;
+        double trafficRate = (8.0*((double) numPacketsReceived)/1000.0) / elapsedTime;
+        double trafficRateRounded = (double)Math.round(trafficRate * 1000d) / 1000d;
 
-        System.out.println("received=" + numPacketsReceived + " KB rate=" + trafficRate + " Mbps");
+        System.out.println("received=" + numPacketsReceived + " KB rate=" + trafficRateRounded + " Mbps");
     }
 }

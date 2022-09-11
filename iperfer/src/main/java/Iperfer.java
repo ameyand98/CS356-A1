@@ -1,5 +1,6 @@
 import org.apache.commons.cli.*;
 import java.io.IOException;
+import java.util.*;
 
 public class Iperfer {
     public static void main(String[] args) throws IOException {
@@ -29,12 +30,13 @@ public class Iperfer {
         }
 
         String runAs = cmd.getOptionValue("client");
-        if (runAs == null) {
+        System.out.println(runAs);
+        if (cmd.hasOption("-s")) {
             // run as server
             System.out.println("Running server on port " + portNum);
             Server server = new Server(portNum);
             server.run();
-        } else {
+        } else if (cmd.hasOption("-c")) {
             // run as client
             String hostname = cmd.getOptionValue("hostname");
             double timeInSecs = Integer.parseInt(cmd.getOptionValue("time"));

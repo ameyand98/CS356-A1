@@ -1,6 +1,7 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.*;
 
 
 public class Client {
@@ -65,8 +66,9 @@ public class Client {
 
     private void summarize(double elapsedTime) {
         //Convert to KB -> megabits then megabits / secs -> Mbps
-        double trafficRate = (8*(double) numPacketsSent/1000.0) / elapsedTime;
+        double trafficRate = (8.0*((double) numPacketsSent)/1000.0) / elapsedTime;
+        double trafficRateRounded = (double)Math.round(trafficRate * 1000d) / 1000d;
 
-        System.out.println("sent=" + numPacketsSent + " KB rate=" + trafficRate + " Mbps");
+        System.out.println("received=" + numPacketsSent + " KB rate=" + trafficRateRounded + " Mbps");
     }
 }
