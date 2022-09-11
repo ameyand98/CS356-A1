@@ -6,7 +6,7 @@ import java.net.*;
 public class Client {
 
     private Socket socket;
-    private int numPacketsSent;
+    private long numPacketsSent; //num KB sent 
     private DataOutputStream outStream;
     // private PrintWriter inStream;
 
@@ -50,6 +50,15 @@ public class Client {
         outStream.close();
         socket.close();
 
+        summarize(elapsedTime);
+
         return numPacketsSent;
+    }
+
+    private void summarize(double elapsedTime) {
+        //Convert to KB -> megabits then megabits / secs -> Mbps
+        double trafficRate = (8*(double) numPacketsSent/1000.0) / elapsedTime;
+
+        System.out.println("sent=" + str(numPacketsSent) + " KB rate=" + str(trafficRate) + " Mbps");
     }
 }
