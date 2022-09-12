@@ -1,0 +1,7 @@
+parsing cmds
+Running server on port 6633
+received=120100 KB rate=28.677 Mbps
+
+parsing cmds
+Running client on port 6633 and host 10.0.0.2 for 30.0 s
+received=120100 KB rate=31.137 Mbps
