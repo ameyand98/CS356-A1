@@ -209,6 +209,7 @@ INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -268,8 +269,16 @@ INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/sym
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT ./pt1_experiments//client_6633_wired.png
+INPUT ./pt1_experiments//client_6633_wired.png
+INPUT ./pt1_experiments//client_6633_wired.png
 OUTPUT answers.pdf
+INPUT ./pt1_experiments//client_6633_wired.png
+INPUT ./pt1_experiments//server_6633_wired.png
+INPUT ./pt1_experiments//server_6633_wired.png
+INPUT ./pt1_experiments//server_6633_wired.png
+INPUT ./pt1_experiments//server_6633_wired.png
+INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT answers.aux
 INPUT /Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb

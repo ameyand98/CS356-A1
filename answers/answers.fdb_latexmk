@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1662946575 "/Users/sohampatel/UTCS/Semesters/Fall_2022/CS356/Assignment_1/CS356-A1/answers/answers.tex" "answers.pdf" "answers" 1662946575
+["pdflatex"] 1662956385 "/Users/sohampatel/UTCS/Semesters/Fall_2022/CS356/Assignment_1/CS356-A1/answers/answers.tex" "answers.pdf" "answers" 1662956385
   "/Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/Users/sohampatel/Library/TinyTeX/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -51,9 +51,11 @@
   "/Users/sohampatel/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1637212904 92943 52fb69212127f27b9e8a91802336eeae ""
   "/Users/sohampatel/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1637212906 1428444 b64d251bdd4e846a3226a514872ab7ef ""
   "/Users/sohampatel/Library/TinyTeX/texmf.cnf" 1631043644 685 b6d9e3e1e407dea430338b5a2833b69d ""
-  "/Users/sohampatel/UTCS/Semesters/Fall_2022/CS356/Assignment_1/CS356-A1/answers/answers.tex" 1662946574 498 860952014817c87345b51d9cb55597ea ""
-  "answers.aux" 1662946575 759 19176a3a4abdfe8f46cf94b23aa9969f "pdflatex"
-  "answers.tex" 1662946574 498 860952014817c87345b51d9cb55597ea ""
+  "/Users/sohampatel/UTCS/Semesters/Fall_2022/CS356/Assignment_1/CS356-A1/answers/answers.tex" 1662956383 847 f88bcdaff885495abf9d7322472a40e9 ""
+  "answers.aux" 1662956385 759 19176a3a4abdfe8f46cf94b23aa9969f "pdflatex"
+  "answers.tex" 1662956383 847 f88bcdaff885495abf9d7322472a40e9 ""
+  "pt1_experiments//client_6633_wired.png" 1662946472 33082 b1469a71cb14f6f03bd343adbf879ce5 ""
+  "pt1_experiments//server_6633_wired.png" 1662945991 50837 cf5f9cc9b2e0f6b84efeb83f1a9ccdc1 ""
   (generated)
   "answers.aux"
   "answers.log"
