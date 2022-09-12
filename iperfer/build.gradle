@@ -19,3 +19,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task classpath {
+    new File(".", "classpath.txt").text = sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':') + "\n"
+}
