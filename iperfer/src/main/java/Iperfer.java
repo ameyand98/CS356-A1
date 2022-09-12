@@ -1,6 +1,5 @@
 import org.apache.commons.cli.*;
 import java.io.IOException;
-import java.util.*;
 
 public class Iperfer {
     public static void main(String[] args) throws IOException {
@@ -29,8 +28,6 @@ public class Iperfer {
             throwError("Error: port number must be in the range 1024 to 65535");
         }
 
-        String runAs = cmd.getOptionValue("client");
-        System.out.println(runAs);
         if (cmd.hasOption("-s")) {
             // run as server
             System.out.println("Running server on port " + portNum);
