@@ -1,0 +1,3 @@
+parsing cmds
+Running server on port 6633
+received=83917 KB rate=18.807 Mbps
